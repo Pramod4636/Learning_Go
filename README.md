@@ -3,19 +3,35 @@
 
 This guide provides a systematic approach to understand any code project efficiently, using the Wallet Service as a practical example.
 
- Visual Flow of Code
-pgsql
-Copy
-Edit
-[HTTP Request]
-    ↓
-handler/chat_handler.go → parses request
-    ↓
-usecase/chat_usecase.go → runs business logic
-    ↓
-repo/pg_chat_repo.go → DB access
-    ↓
-domain/chat_message.go → data structs
+# 🔁 Visual Flow of Code (Clean Architecture – Chat Service)
+
+```text
+[ HTTP Request ]
+      ↓
+handler/chat_handler.go
+    ↳ Parses request
+    ↳ Validates input (e.g., JWT, params)
+    ↳ Calls Usecase layer
+
+      ↓
+usecase/chat_usecase.go
+    ↳ Business logic
+    ↳ Calls Repo interfaces
+    ↳ Orchestrates DB + AI service calls
+
+      ↓
+repo/pg_chat_repo.go
+    ↳ Interacts with PostgreSQL
+    ↳ Implements repository interface
+    ↳ Uses parameterized SQL queries
+
+      ↓
+domain/chat_message.go
+    ↳ Pure Go types (structs + enums)
+    ↳ No dependencies
+    ↳ Used by all layers
+
+
 ## 📋 **Quick Start Checklist**
 
 ### **Phase 1: Project Overview (5-10 minutes)**
