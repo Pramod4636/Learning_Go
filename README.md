@@ -3,6 +3,19 @@
 
 This guide provides a systematic approach to understand any code project efficiently, using the Wallet Service as a practical example.
 
+ Visual Flow of Code
+pgsql
+Copy
+Edit
+[HTTP Request]
+    ↓
+handler/chat_handler.go → parses request
+    ↓
+usecase/chat_usecase.go → runs business logic
+    ↓
+repo/pg_chat_repo.go → DB access
+    ↓
+domain/chat_message.go → data structs
 ## 📋 **Quick Start Checklist**
 
 ### **Phase 1: Project Overview (5-10 minutes)**
